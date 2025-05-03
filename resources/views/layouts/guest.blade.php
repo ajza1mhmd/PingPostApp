@@ -15,10 +15,21 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
+        <header>
+            <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+                <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+                    <a href="/" class="flex items-center">
+                        {{-- <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" /> --}}
+                        <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">PingPost</span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <div class="min-h-screen flex flex-col sm:justify-start items-center pt-6 sm:pt-16 bg-gray-100 dark:bg-gray-900">
             <div>
                 <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                    {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
+                    {{-- <img src="{{ asset('img/Alnahda-Logo.png') }}" alt="Logo" class="w-20 h-20"> --}}
                 </a>
             </div>
 
