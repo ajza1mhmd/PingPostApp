@@ -3,24 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Events\NoticePublished; // Event we'll create
+use App\Events\NoticePublished;
 
 class NoticeController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        return view('dashboard'); // Whiteboard Editor
+    }
+
+    public function display()
+    {
+        return view('display'); // Live notice board
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'message' => 'required|string|max:5000',
+            'message' => 'required|string|max:1000',
         ]);
 
-        // Fire a websocket event
-        broadcast(new NoticePublished($request->message))->toOthers();
+        $message = $request->input('message');
 
-        return redirect()->back()->with('status', 'Notice Published');
+        // Broadcast the event to all other users
+        broadcast(new NoticePublished($message))->toOthers();
+        logger('Broadcasting: ' . $message);
+
+        return redirect()->back()->with('status', 'Notice Published!');
     }
 }

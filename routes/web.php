@@ -13,9 +13,14 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/dashboard', [NoticeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
-Route::get('/display', function () {
-    return view('display');
-})->name('notices.display');
+// Live Display Page
+Route::get('/display', [NoticeController::class, 'display'])
+    ->name('notices.display');
+
+// Store new notice
+Route::post('/notices', [NoticeController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('notices.store');
 
 
 

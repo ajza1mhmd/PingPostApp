@@ -29,11 +29,9 @@ class NoticePublished implements ShouldBroadcast
      *
      * @return array<int, \Illuminate\Broadcasting\Channel>
      */
-    public function broadcastOn(): array
+    public function broadcastOn(): Channel
     {
-        return [
-            new PresenceChannel('notices'),
-        ];
+        return new Channel('notice-board');
     }
 
     public function broadcastAs()
