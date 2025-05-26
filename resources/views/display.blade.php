@@ -18,14 +18,16 @@
         </div>
     </div>
 </x-app-layout>
-<script type="module">
-  echo.channel('notices')
-        .listen('NoticePublished', (event) => {
-            const noticeFeed = document.getElementById('noticeFeed');
+<script>
+        window.Echo.channel('notice-board')
+        .listen('.NoticePublished', (e) => {
+            console.log("Notice received:", e.message);
+            const container = document.getElementById('noticeFeed');
             const newNotice = document.createElement('div');
-            newNotice.classList.add('bg-gray-100', 'p-4', 'rounded-lg', 'text-gray-900', 'dark:bg-gray-700', 'dark:text-gray-100');
-            newNotice.textContent = event.message; // Display the message from the event
-            noticeFeed.prepend(newNotice); // Add the new notice at the top
+            newNotice.classList.add('p-4', 'bg-blue-100', 'text-blue-800', 'rounded-lg', 'shadow');
+            newNotice.innerText = e.message;
+
+            container.prepend(newNotice);
         });
-</script>
+    </script>
 
